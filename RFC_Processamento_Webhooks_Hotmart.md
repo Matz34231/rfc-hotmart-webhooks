@@ -4,41 +4,21 @@
 
 ------------------------------------------------------------------------
 
-## 1. De-Para de Dados (JSON → Banco)
+ ## 1. De-Para de Dados (JSON → Banco)
 
-  ----------------------------------------------------------------------------------------------
-  Campo JSON                            Coluna Banco                 Regra Aplicada
-  ------------------------------------- ---------------------------- ---------------------------
-  `id`                                  `external_event_id`          Identificador único do
-                                                                     evento
-
-  `data.purchase.transaction`           `external_transaction_id`    Identificador único da
-                                                                     transação
-
-  `data.subscription.subscriber.code`   `external_subscription_id`   Identificador único da
-                                                                     assinatura
-
-  `data.subscription.status`            `status`                     Mapear ACTIVE, OVERDUE,
-                                                                     CANCELLED
-
-  `data.purchase.status`                `purchase_status`            APPROVED ou COMPLETED
-                                                                     indicam pagamento
-                                                                     confirmado
-
-  `data.purchase.approved_date`         `approved_at`                Converter timestamp (ms)
-                                                                     para datetime
-
-  `data.purchase.date_next_charge`      `access_ends_at`             Converter timestamp (ms)
-                                                                     para datetime
-
-  `data.subscription.plan.name`         `plan_type`                  Determinar mensal vs anual
-
-  `data.purchase.recurrence_number`     `recurrence_number`          Controle de renovação
-
-  `data.buyer.email`                    `user_email`                 Identificação do usuário
-
-  Payload completo                      `raw_webhook_data`           Armazenado como JSONB para
-                                                                     auditoria
+| Campo JSON | Coluna Banco | Regra Aplicada |
+|------------|--------------|----------------|
+| `id` | `external_event_id` | Identificador único do evento |
+| `data.purchase.transaction` | `external_transaction_id` | Identificador único da transação |
+| `data.subscription.subscriber.code` | `external_subscription_id` | Identificador único da assinatura |
+| `data.subscription.status` | `status` | Mapear ACTIVE, OVERDUE, CANCELLED |
+| `data.purchase.status` | `purchase_status` | APPROVED ou COMPLETED indicam pagamento confirmado |
+| `data.purchase.approved_date` | `approved_at` | Converter timestamp (ms) para datetime |
+| `data.purchase.date_next_charge` | `access_ends_at` | Converter timestamp (ms) para datetime |
+| `data.subscription.plan.name` | `plan_type` | Determinar mensal vs anual |
+| `data.purchase.recurrence_number` | `recurrence_number` | Controle de renovação |
+| `data.buyer.email` | `user_email` | Identificação do usuário |
+| Payload completo | `raw_webhook_data` | Armazenado como JSONB para auditoria |
   ----------------------------------------------------------------------------------------------
 
 ------------------------------------------------------------------------
